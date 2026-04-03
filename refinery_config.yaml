@@ -1,0 +1,13 @@
+# CATALON multi-agent build configuration
+# Increased refinery capacity to avoid review bottlenecks.
+agents:
+  polecat:
+    count: 9
+    role: "implementation"
+  refinery:
+    count: 2
+    role: "review"
+
+review:
+  parallelism: 2
+  queue_strategy: fifo
