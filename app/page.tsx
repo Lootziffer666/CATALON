@@ -26,8 +26,7 @@ export default function Home() {
             The Agentic Design System
           </h1>
           <p className="mx-auto mb-8 max-w-2xl text-lg text-muted-foreground">
-            A living development environment combining A2UI Composer, OpenHands Execution Core, 
-            and Self-Healing Logic for autonomous UI generation.
+            A deterministic UI pipeline demo: prompt-to-A2UI JSON, reproducible preview plans, scoped execution planning, and rule-based self-healing.
           </p>
           <div className="flex justify-center gap-4">
             <Link href="/atelier">
@@ -49,8 +48,7 @@ export default function Home() {
               </div>
               <h3 className="mb-2 text-xl font-semibold">A2UI Composer</h3>
               <p className="text-muted-foreground">
-                The bridge between human and AI. Creates temporary previews (sandboxes) for 
-                concept refinement using shadcn/ui as atomic building blocks.
+                Converts prompt text into deterministic A2UI JSON and preview instructions.
               </p>
             </div>
 
@@ -60,8 +58,7 @@ export default function Home() {
               </div>
               <h3 className="mb-2 text-xl font-semibold">OpenHands Executor</h3>
               <p className="text-muted-foreground">
-                The brain. Once a design is approved, OpenHands writes actual code to the 
-                filesystem, enabling self-mutation of the tool itself.
+                Validates that only approved A2UI structure can produce file mutation plans inside allowed paths.
               </p>
             </div>
 
@@ -71,8 +68,7 @@ export default function Home() {
               </div>
               <h3 className="mb-2 text-xl font-semibold">Self-Healing</h3>
               <p className="text-muted-foreground">
-                The immune system. Monitors UI integrity, detects and autonomously corrects 
-                CSS conflicts and layout issues.
+                Applies known rule-based fixes for known break types instead of speculative retries.
               </p>
             </div>
           </div>
