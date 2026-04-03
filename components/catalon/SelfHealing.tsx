@@ -107,7 +107,7 @@ export function SelfHealing({
   const autoFixConflict = useCallback((conflict: Conflict): boolean => {
     const elements = document.querySelectorAll('*');
     
-    for (const el of elements) {
+    for (const el of Array.from(elements)) {
       if (conflict.type === 'overflow' && el.scrollHeight > el.clientHeight) {
         (el as HTMLElement).style.overflow = 'auto';
         return true;
