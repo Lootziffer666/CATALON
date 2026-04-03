@@ -214,4 +214,8 @@ export function createSeparatorComponent(): A2UIComponent {
     type: 'Separator',
     props: {},
   };
+
 }
+
+}
+
