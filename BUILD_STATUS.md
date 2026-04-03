@@ -1,41 +1,22 @@
-# CATALON Design System - Build Status
+# CATALON Build Status
 
-**Last Updated:** 2026-04-03 15:53 UTC
-**Status:** ✅ COMPLETE - Build Verified
+**Last Updated:** 2026-04-03 UTC
+**Status:** ✅ Build passing for current branch
 
----
+## What is verified now
 
-## ✅ All Systems Go
+- ✅ `npm run lint`
+- ✅ `npm run build`
 
-- **Build:** ✅ `npm run build` passes
-- **Dev Server:** ✅ Starts on localhost:3000
-- **Convoy:** ✅ Landed (8/8 beads closed)
+## What is not claimed
 
----
+- No claim of production hardening.
+- No claim of end-to-end external API availability.
+- No claim of automatic code execution in this UI without backend integration.
 
-## Components in Main
+## Functional scope (current)
 
-| Component | Path | Status |
-|-----------|------|--------|
-| A2UI Atelier | `app/atelier/page.tsx` | ✅ |
-| A2UI Composer | `components/catalon/A2UIComposer.tsx` | ✅ |
-| Self-Healing | `components/catalon/SelfHealing.tsx` | ✅ |
-| OpenHands Executor | `components/catalon/OpenHandsExecutor.tsx` | ✅ |
-| A2UI Client | `lib/a2ui-client.ts` | ✅ |
-| Utils | `lib/utils.ts` | ✅ |
-
----
-
-## Routes
-
-- `/` - Landing page
-- `/atelier` - A2UI Sandbox
-
----
-
-## History
-
-- 2026-04-03 15:53 - Build verified, all in main
-- 2026-04-03 15:48 - Convoy closed
-- 2026-04-03 14:43 - CodeX intervention
-- 2026-04-03 08:31 - Initial build
+- Deterministic A2UI SSOT pipeline functions in `lib/a2ui-ssot.ts`.
+- Composer demo: prompt to A2UI JSON and preview plan.
+- Executor demo: scope-gated mutation planning.
+- Self-healing demo: rule-based known layout fix.
