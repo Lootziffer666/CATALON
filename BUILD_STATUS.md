@@ -1,36 +1,41 @@
 # CATALON Design System - Build Status
 
-**Build Date:** 2026-04-03 08:31 UTC
-**Status:** FIX APPLIED - Refinery Bottleneck Removed
+**Last Updated:** 2026-04-03 15:53 UTC
+**Status:** ✅ COMPLETE - Build Verified
 
-## Problem (verified)
+---
 
-The original blockage description is plausible for the reported symptoms:
+## ✅ All Systems Go
 
-- A convoy can stall when all implementation beads are complete but one review bead is still waiting.
-- A single refinery reviewer serializes all incoming merge requests.
-- Additional agent branches keep accumulating while review throughput stays fixed.
+- **Build:** ✅ `npm run build` passes
+- **Dev Server:** ✅ Starts on localhost:3000
+- **Convoy:** ✅ Landed (8/8 beads closed)
 
-## Root Cause
+---
 
-Only **1** refinery reviewer was configured, creating a single-threaded review queue.
+## Components in Main
 
-## Fix
+| Component | Path | Status |
+|-----------|------|--------|
+| A2UI Atelier | `app/atelier/page.tsx` | ✅ |
+| A2UI Composer | `components/catalon/A2UIComposer.tsx` | ✅ |
+| Self-Healing | `components/catalon/SelfHealing.tsx` | ✅ |
+| OpenHands Executor | `components/catalon/OpenHandsExecutor.tsx` | ✅ |
+| A2UI Client | `lib/a2ui-client.ts` | ✅ |
+| Utils | `lib/utils.ts` | ✅ |
 
-Added explicit reviewer scaling in `refinery_config.yaml`:
+---
 
-- `refinery.count: 2`
-- `review.parallelism: 2`
+## Routes
 
-This removes the single-review bottleneck and allows two merge requests to be reviewed concurrently.
+- `/` - Landing page
+- `/atelier` - A2UI Sandbox
 
-## Expected Impact
+---
 
-- Review throughput doubles from 1 to 2 concurrent reviews.
-- Queue drain time is reduced significantly for backlogged branches.
-- Convoy completion no longer depends on one refinery lane.
+## History
 
-## Files Changed
-
-- `refinery_config.yaml` (new): adds second refinery agent and review parallelism.
-- `BUILD_STATUS.md` (updated): reflects verified cause and applied remediation.
+- 2026-04-03 15:53 - Build verified, all in main
+- 2026-04-03 15:48 - Convoy closed
+- 2026-04-03 14:43 - CodeX intervention
+- 2026-04-03 08:31 - Initial build
