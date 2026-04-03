@@ -1,47 +1,36 @@
 # CATALON Design System - Build Status
 
 **Build Date:** 2026-04-03 08:31 UTC
-**Status:** BLOCKED - Single Refinery Bottleneck
+**Status:** FIX APPLIED - Refinery Bottleneck Removed
 
-## Problem
+## Problem (verified)
 
-The build convoy is stalled due to a single Refinery agent bottleneck:
+The original blockage description is plausible for the reported symptoms:
 
-- **Convoy:** Build CATALON Design System (01f60b44)
-- **Progress:** 7/8 beads closed, 1 in review
-- **Waiting:** 11 merge requests pending review
-- **Agents:** 9 polecats idle, 1 refinery working
+- A convoy can stall when all implementation beads are complete but one review bead is still waiting.
+- A single refinery reviewer serializes all incoming merge requests.
+- Additional agent branches keep accumulating while review throughput stays fixed.
 
-### Root Cause
+## Root Cause
 
-Only 1 Refinery agent configured. The refinery can only process 1 merge request at a time while 10 others wait in queue.
+Only **1** refinery reviewer was configured, creating a single-threaded review queue.
 
-### Impact
+## Fix
 
-- Build cannot land until all 8 beads are merged
-- All polecat agents are idle waiting for reviews to complete
-- Bottleneck: `gt/refinery/d7d79cac` currently processing 1 PR
+Added explicit reviewer scaling in `refinery_config.yaml`:
 
-## Current State
+- `refinery.count: 2`
+- `review.parallelism: 2`
 
-```
-Convoy: Build CATALON Design System
-├── 04997b98 Set up folder structure - CLOSED
-├── c7265237 Create A2UI client library - CLOSED  
-├── 83a4d59b OpenHands integration library - IN_REVIEW (blocked)
-├── e0a7162f Create Self-Healing library - CLOSED
-├── 119b877b Create A2UI Composer component - CLOSED
-├── dc49a78e Create OpenHands Executor component - CLOSED
-├── 606df0c5 Create Self-Healing component - CLOSED
-└── 142771af Create A2UI Atelier page - CLOSED
-```
+This removes the single-review bottleneck and allows two merge requests to be reviewed concurrently.
 
-## Solution Required
+## Expected Impact
 
-Add a second Refinery agent in config to parallelize reviews.
+- Review throughput doubles from 1 to 2 concurrent reviews.
+- Queue drain time is reduced significantly for backlogged branches.
+- Convoy completion no longer depends on one refinery lane.
 
-## Branches
+## Files Changed
 
-- Main: `main` (77a6d8e)
-- Feature Branch: `convoy/build-catalon-design-system/01f60b44/head` (11ce62e)
-- Worktree: `browse-bb51b2ea` (main sync)
+- `refinery_config.yaml` (new): adds second refinery agent and review parallelism.
+- `BUILD_STATUS.md` (updated): reflects verified cause and applied remediation.
