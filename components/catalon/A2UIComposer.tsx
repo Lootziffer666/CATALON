@@ -167,16 +167,16 @@ export function A2UIComposer({
 
   const renderComponent = (component: A2UIComponent) => {
     switch (component.type) {
-      case "Card":
+case "Card":
         return (
           <div
             key={component.id}
             className="rounded-lg border bg-card p-4 shadow-sm"
           >
-            {component.props.title && (
+            {!!component.props.title && (
               <h3 className="font-semibold">{component.props.title as string}</h3>
             )}
-            {component.props.description && (
+            {!!component.props.description && (
               <p className="text-sm text-muted-foreground">
                 {component.props.description as string}
               </p>
