@@ -28,7 +28,7 @@ export default function AtelierPage() {
 
       <div className="grid gap-6">
         <A2UIComposer onDocumentComposed={setApprovedDoc} />
-        <OpenHandsExecutor document={approvedDoc} className="rounded-lg border p-4" />
+        <OpenHandsExecutor document={approvedDoc} onDocumentChange={setApprovedDoc} className="rounded-lg border p-4" />
         <SelfHealing
           document={approvedDoc}
           onDocumentChange={setApprovedDoc}
